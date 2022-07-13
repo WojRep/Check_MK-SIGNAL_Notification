@@ -1,5 +1,6 @@
 # Check_MK-SIGNAL_Notification
 
+[CheckMK](https://checkmk.com/) plugin for sending notifications via [Signal Messenger](https://signal.org)
 
 Prerequisites
 
@@ -14,7 +15,7 @@ Prerequisites
 
      2) Get signal-cli >= v0.10.8 from https://github.com/AsamK/signal-cli
 
-### 1. Installation: signal-cli
+## 1. Installation: signal-cli
 
 <i>YOUR_CHECKMK_SITE_NAME -> enter your CheckMK site name here</i>
 
@@ -25,7 +26,7 @@ tar xf signal-cli-0.10.8-Linux.tar.gz -C ~/local
 ln -sf ~/local/signal-cli-0.10.8/bin/signal-cli ~/local/bin/
 ```
 
-### 2. Installation: CheckMK plugin
+## 2. Installation: CheckMK plugin
 
 
 
@@ -41,7 +42,7 @@ In CheckMK, you set the "Pager address: field in the user settings, and there yo
 
 
 
-### 3. Manual configuration of Signal Messenger account
+## 3. Manual configuration of Signal Messenger account
 
 Important: The ACCOUNT is your phone number in international format and must include the country calling code. Hence it should start with a "+" sign. (See Wikipedia for a list of all country codes.)
 
