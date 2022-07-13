@@ -30,7 +30,7 @@ ln -sf ~/local/signal-cli-0.10.8/bin/signal-cli ~/local/bin/
 
 
 ```/bin/sh
-wget 
+wget https://github.com/WojRep/Check_MK-SIGNAL_Notification/releases/download/2.0.0/signal-messenger-notification-2.0.0.mkp
 mkp install signal-messenger.mkp
 ```
 
