@@ -29,9 +29,19 @@ ln -sf ~/local/signal-cli-0.10.8/bin/signal-cli ~/local/bin/
 
 
 
-`mkp install signal-messenger.mkp`
+```/bin/sh
+wget 
+mkp install signal-messenger.mkp
+```
 
-### Manual configuration of Signal Messenger account
+Set Your Signal Messenger Account (eg. from phone number)
+`nano ~/local/share/check_mk/notifications/signal-messenger`
+
+In CheckMK, you set the "Pager address: field in the user settings, and there you enter the phone number with the country code (e.g. +48)
+
+
+
+### 3. Manual configuration of Signal Messenger account
 
 Important: The ACCOUNT is your phone number in international format and must include the country calling code. Hence it should start with a "+" sign. (See Wikipedia for a list of all country codes.)
 
