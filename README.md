@@ -12,17 +12,26 @@ Prerequisites
         
         additional help: https://tecadmin.net/install-latest-java-on-debian/
 
-     2) signal-cli >= v0.10.8 from https://github.com/AsamK/signal-cli
+     2) Get signal-cli >= v0.10.8 from https://github.com/AsamK/signal-cli
+
+### 1. Installation: signal-cli
+
+<i>YOUR_CHECKMK_SITE_NAME -> enter your CheckMK site name here</i>
 
 ```/bin/sh
+omd su YOUR_CHECKMK_SITE_NAME
+wget https://github.com/AsamK/signal-cli/releases/download/v0.10.8/signal-cli-0.10.8-Linux.tar.gz
 tar xf signal-cli-0.10.8-Linux.tar.gz -C ~/local
 ln -sf ~/local/signal-cli-0.10.8/bin/signal-cli ~/local/bin/
 ```
 
+### 2. Installation: CheckMK plugin
 
-#####
 
 
+`mkp install signal-messenger.mkp`
+
+### Manual configuration of Signal Messenger account
 
 Important: The ACCOUNT is your phone number in international format and must include the country calling code. Hence it should start with a "+" sign. (See Wikipedia for a list of all country codes.)
 
