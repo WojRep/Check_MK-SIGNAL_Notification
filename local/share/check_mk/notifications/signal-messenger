@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+# -*- encoding: utf-8; py-indent-offset: 4 -*-
+#
+
+#####################
+####   Setting  #####
+#####################
+
+# Signal Phone Number with country code
+ACCOUNT = '+480000000'
+# Log file
+LOG_FILE='~/var/log/notify-signal.log'
+
+#####################
+#### end setting ####
+#####################
+
+import os
+import sys
+from subprocess import (
+    PIPE,
+    run,
+)
+import logging
+from datetime import datetime
+
+
+def signal_send(tel_number, message):
+        cmd = []
+        SIGNAL_CLI_BIN_PATH =  os.environ.get('HOME') + '/local/bin/signal-cli'
+        logging.basicConfig(filename=LOG_FILE, level=logging.INFO)
+        logging.basicConfig(filename=LOG_FILE, level=logging.CRITICAL)
+        LOG_DATE = datetime.today().strftime('%Y-%m-%d')
+        LOG_TIME = datetime.today().strftime('%H:%M:%S')
+        cmd.append(SIGNAL_CLI_BIN_PATH)
+        cmd.append('-a')
+        cmd.append(ACCOUNT)
+        cmd.append('--trust-new-identities')
+        cmd.append('always')
+        cmd.append('send')
+        cmd.append('-m')
+        cmd.append('"' + str(message) + '"')
+        cmd.append(str(tel_number))
+        result = run(cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+        if result.returncode == 0:
+            logging.info(f'{LOG_DATE} {LOG_TIME} - CMD: {cmd}')
+            logging.info(f'{LOG_DATE} {LOG_TIME} - OUT: {result.stdout}')
+        else:
+            logging.critical(f'{LOG_DATE} {LOG_TIME} - CMD: {cmd}')
+            logging.critical(f'{LOG_DATE} {LOG_TIME} - OUT: {result.stdout}')
+            logging.critical(f'{LOG_DATE} {LOG_TIME} - ERR: {result.stderr}')
+
+
+# set PATH and LANG
+path = os.environ.get('PATH')
+path = path + ':/usr/bin:/usr/sbin:/bin:/sbin';
+os.environ['PATH'] = path
+os.environ['LAN'] = 'en_US.UTF-8'
+#
+# get Signal Env
+try:
+    tel_number = os.environ.get('NOTIFY_CONTACTPAGER')
+    host = os.environ.get('NOTIFY_HOSTNAME')
+    notifywhat = os.environ.get('NOTIFY_WHAT')
+    servicestate = os.environ.get('NOTIFY_SERVICESTATE')
+    servicedesc = os.environ.get('NOTIFY_SERVICEDESC')
+    hoststate = os.environ.get('NOTIFY_HOSTSTATE')
+    hostout = os.environ.get('NOTIFY_HOSTOUTPUT')
+    serviceout = os.environ.get('NOTIFY_SERVICEOUTPUT')
+except:
+    raise ValueError
+
+message = ''
+message += str(host) + ' : '
+
+if (notifywhat == 'SERVICE'):
+        message += str(servicestate) + ' '
+        message += str(servicedesc) + ' '
+        message += ' - ' + str(serviceout) + ' '
+else:
+        message += str(hoststate)
+        message += ' - ' + str(hostout)
+
+signal_send(tel_number, message)
