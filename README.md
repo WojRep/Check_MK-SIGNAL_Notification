@@ -42,7 +42,7 @@ In CheckMK, you set the "Pager address: field in the user settings, and there yo
 
 
 
-## 3. Manual configuration of Signal Messenger account
+## 3. [Manual configuration of Signal Messenger account](https://github.com/AsamK/signal-cli)
 
 Important: The ACCOUNT is your phone number in international format and must include the country calling code. Hence it should start with a "+" sign. (See Wikipedia for a list of all country codes.)
 
